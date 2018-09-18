@@ -1,0 +1,32 @@
+{% from "macros/fields.tmpl" import render_input_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block content %}
+    {% set pole=[1,2,3,4] %}
+<h1>Tabulka</h1>
+<table>
+    <tr>
+        <th>Hlava</th>
+    </tr>
+    <tr>
+        <td>
+        {% for prvek in pole %}
+            {{ prvek }}
+        {% endfor %}
+        </td>
+        <td>
+        {% for prvek,text in pole1 %}
+            {{ prvek }}
+            {{ text }}
+        {% endfor %}
+        </td>
+    </tr>
+</table>
+    <form method="POST" id='insert-form'>
+    {{ form.hidden_tag() }}
+    {{ render_input_field(form.jmeno) }}
+    {{ render_input_field(form.prijmeni) }}
+    {{ render_input_field(form.datumNarozeni) }}
+    {{ render_submit() }}
+  </form>
+{% endblock %}
