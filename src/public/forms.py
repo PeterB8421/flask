@@ -46,16 +46,25 @@ class masoform(Form):
 
 class UserForm(Form):
 
-    jmeno = TextField('Choose your username', validators=[
+    jmeno = TextField('First name', validators=[
         Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
         Length(min=6, max=30, message="Please use between 6 and 30 characters"),
         InputRequired(message="You can't leave this empty")
     ])
-    prijmeni = TextField('Choose your username', validators=[
+    prijmeni = TextField('Last name', validators=[
         Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
         Length(min=6, max=30, message="Please use between 6 and 30 characters"),
         InputRequired(message="You can't leave this empty")
     ])
     datumNarozeni = DateField('Date')
+    ulice = TextField('Street', validators=[
+        InputRequired(message="You can't leave this empty")
+                      ])
+    mesto = TextField('City',validators=[
+        InputRequired(message="You can't leave this empty")
+    ])
+    psc = TextField('Postcode',validators=[
+        InputRequired(message="You can't leave this empty")
+    ])
 
 
