@@ -38,32 +38,38 @@ class LogUserForm(Form):
     ])
     pohlavi = BooleanField('Pohlavi')
 
+
 class secti(Form):
     hodnota1 = IntegerField("vlozHodnotu1", validators=[InputRequired(message="vyzadovano")])
     hodnota2 = IntegerField("vlozHodnotu2", validators=[InputRequired(message="vyzadovano")])
+
+
 class masoform(Form):
     typ=SelectField('Typ', choices=[(1, "Hovezi"), (2, "Veprove")], default=2)
 
-class UserForm(Form):
 
+class UserForm(Form):
     jmeno = TextField('First name', validators=[
         Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
-        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        Length(min=3, max=30, message="Please use between 3 and 30 characters"),
         InputRequired(message="You can't leave this empty")
     ])
     prijmeni = TextField('Last name', validators=[
         Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
-        Length(min=6, max=30, message="Please use between 6 and 30 characters"),
+        Length(min=3, max=40, message="Please use between 3 and 40 characters"),
         InputRequired(message="You can't leave this empty")
     ])
     datumNarozeni = DateField('Date')
     ulice = TextField('Street', validators=[
+        Length(min=3, max=50, message="Please use between 3 and 50 characters"),
         InputRequired(message="You can't leave this empty")
                       ])
     mesto = TextField('City',validators=[
+        Length(min=2, max=40, message="Please use between 2 and 40 characters"),
         InputRequired(message="You can't leave this empty")
     ])
     psc = TextField('Postcode',validators=[
+        Length(min=5, max=5, message="Please use only 5 characters"),
         InputRequired(message="You can't leave this empty")
     ])
 
