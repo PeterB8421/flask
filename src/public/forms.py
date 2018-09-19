@@ -80,7 +80,7 @@ class UserForm(Form):
         Length(min=3, max=40, message="Please use between 3 and 40 characters"),
         InputRequired(message="You can't leave this empty")
     ])
-    datumNarozeni = DateField('Date')
+    datumNarozeni = DateField('Birtdate')
     ulice = TextField('Street', validators=[
         Predicate(safe_street_characters, message="Please use only letters (a-z) and numbers"),
         Length(min=3, max=50, message="Please use between 3 and 50 characters"),

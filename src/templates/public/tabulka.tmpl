@@ -1,10 +1,14 @@
 {% from "macros/fields.tmpl" import render_input_field, render_submit %}
 {% extends "shared/layout.tmpl" %}
-
 {% block content %}
+    <style>
+        #warn{
+            color: red;
+        }
+    </style>
     {% set pole=[1,2,3,4] %}
-<h1>Tabulka</h1>
-<table>
+<h1>Registration</h1>
+<!--<table>
     <tr>
         <th>Hlava</th>
     </tr>
@@ -21,12 +25,13 @@
         {% endfor %}
         </td>
     </tr>
-</table>
+</table>-->
     <form method="POST" id='insert-form'>
     {{ form.hidden_tag() }}
     {{ render_input_field(form.jmeno) }}
     {{ render_input_field(form.prijmeni) }}
     {{ render_input_field(form.datumNarozeni) }}
+        <p id="warn">Valid format is YYYY-MM-DD !</p>
     {{ render_input_field(form.ulice) }}
     {{ render_input_field(form.mesto) }}
     {{ render_input_field(form.psc) }}
