@@ -1,0 +1,13 @@
+{% from "macros/fields.tmpl" import render_input_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+{% block content %}
+<h1>Vyrobky vysledek</h1>
+    <p>
+        Výrobek: <b>{{ vyrobek }}</b><br>
+        Kusy: <b>{{ ks }}</b> ks<br>
+        Cena: <b>{{ cena }}</b> Kc<br>
+        DPH: <b>{{ dph }}</b> %<br>
+    <hr>
+        Cena celkem: <b>{{ suma }}</b> Kc
+    </p>
+{% endblock %}

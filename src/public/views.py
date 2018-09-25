@@ -2,7 +2,7 @@
 Logic for dashboard related routes
 """
 from flask import Blueprint, render_template
-from .forms import LogUserForm, secti,masoform,UserForm
+from .forms import LogUserForm, secti,masoform,UserForm,VyrobForm
 from ..data.database import db
 from ..data.models import LogUser
 blueprint = Blueprint('public', __name__)
@@ -19,6 +19,12 @@ def tabulka():
         print(form.jmeno.data)
     return render_template('public/tabulka.tmpl',pole1=pole1,form=form)
 
+@blueprint.route('/vyrobky', methods=['GET','POST'])
+def vyrobky():
+    form=VyrobForm()
+    if form.validate_on_submit():
+        return render_template('public/vyrobky_vysledek.tmpl', form=form, cena=form.cena.data, vyrobek=form.vyrobek.data, ks=form.ks.data, dph=form.dph.data,suma=form.cena.data*form.ks.data*(float(form.dph.data)/100+1))
+    return render_template('public/vyrobky.tmpl',form=form)
 @blueprint.route('/loguserinput',methods=['GET', 'POST'])
 def InsertLogUser():
     form = LogUserForm()

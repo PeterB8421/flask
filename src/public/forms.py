@@ -1,7 +1,7 @@
 import re
 
 from flask_wtf import Form
-from wtforms.fields import BooleanField, TextField, PasswordField, DateTimeField, IntegerField,SelectField,DateField
+from wtforms.fields import BooleanField, TextField, PasswordField, DateTimeField, IntegerField,SelectField,DateField,FloatField
 from wtforms.validators import EqualTo, Email, InputRequired, Length
 
 from ..data.models import User, LogUser
@@ -43,6 +43,15 @@ def safe_postcode_characters(s):
     if not s:
         return True
     return re.match(r'^\d{5}$', s) is not None
+
+def safe_dph(s):
+    if s == 21:
+        return True
+    elif s == 15:
+        return True
+    elif s == 10:
+        return True
+    return False
 
 
 class LogUserForm(Form):
@@ -97,4 +106,20 @@ class UserForm(Form):
         InputRequired(message="You can't leave this empty")
     ])
 
+class VyrobForm(Form):
+    vyrobek = TextField("Vyrobek", validators=[
+        Predicate(safe_characters,message="Pouzijte pouze pismena (a-z), bez ceskych znaku!"),
+        Length(min=1,max=30, message="Zadejte maximalne 30 znaku."),
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
+    ks = IntegerField("Kusu",validators=[
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
+    cena = FloatField("Cena",validators=[
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
+    dph = IntegerField("DPH v %",validators=[
+        Predicate(safe_dph, message="DPH muze byt pouze 10, 15 nebo 21 %!"),
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
 
