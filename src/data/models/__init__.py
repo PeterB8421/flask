@@ -4,3 +4,4 @@ from .loguzivatele import LogUser
 from .test import LogUser1
 from .maso import Maso
 from .tabulka import Tabulka
+from .gameuser import GameUser

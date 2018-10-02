@@ -123,3 +123,15 @@ class VyrobForm(Form):
         InputRequired(message="Toto pole nesmi byt prazdne!")
     ])
 
+class GameUserForms(Form):
+        username = TextField('Username', validators=[
+            Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+            Length(min=3, max=30, message="Please use between 3 and 30 characters"),
+            InputRequired(message="You can't leave this empty")
+        ])
+        email = TextField('Email', validators=[
+            Length(min=3, max=40, message="Please use between 3 and 40 characters"),
+            InputRequired(message="You can't leave this empty")
+        ])
+        date = DateField('Date')
+

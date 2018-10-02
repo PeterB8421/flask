@@ -2,9 +2,9 @@
 Logic for dashboard related routes
 """
 from flask import Blueprint, render_template
-from .forms import LogUserForm, secti,masoform,UserForm,VyrobForm
+from .forms import LogUserForm, secti,masoform,UserForm,VyrobForm,GameUserForms
 from ..data.database import db
-from ..data.models import LogUser
+from ..data.models import LogUser,GameUser
 blueprint = Blueprint('public', __name__)
 
 @blueprint.route('/', methods=['GET'])
@@ -18,6 +18,13 @@ def tabulka():
     if form.validate_on_submit():
         print(form.jmeno.data)
     return render_template('public/tabulka.tmpl',pole1=pole1,form=form)
+
+@blueprint.route('/gameuser', methods=['GET','POST'])
+def gameuser():
+    form=GameUserForms()
+    if form.validate_on_submit():
+        new_gameuser = GameUser.create(**form.data)
+    return render_template('public/gameuser.tmpl',form=form)
 
 @blueprint.route('/vyrobky', methods=['GET','POST'])
 def vyrobky():
