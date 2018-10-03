@@ -13,8 +13,7 @@ class GameUser(CRUDModel):
     __table_args__ = {'sqlite_autoincrement': True}
     id = Column(Integer, primary_key=True,autoincrement=True)
     email = Column(String(64), nullable=False, unique=True, index=True, doc="The user's email address.")
-    username = Column(String(64), nullable=False, unique=True, index=True, doc="The user's username.")
-    datumposlednihopristupu = Column(Date,nullable=False,doc="Date")
+    username = Column(String(64), nullable=False, index=True, doc="The user's username.")
 
     # Use custom constructor
     # pylint: disable=W0231

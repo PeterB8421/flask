@@ -133,5 +133,4 @@ class GameUserForms(Form):
             Length(min=3, max=40, message="Please use between 3 and 40 characters"),
             InputRequired(message="You can't leave this empty")
         ])
-        date = DateField('Date')
 
