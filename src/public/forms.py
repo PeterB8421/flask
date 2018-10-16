@@ -134,3 +134,28 @@ class GameUserForms(Form):
             InputRequired(message="You can't leave this empty")
         ])
 
+class GameUserForms_Edit(Form):
+    username = TextField('Username', validators=[
+            Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+            Length(min=3, max=30, message="Please use between 3 and 30 characters"),
+            InputRequired(message="You can't leave this empty")
+        ])
+    email = TextField('Email', validators=[
+        Length(min=3, max=40, message="Please use between 3 and 40 characters"),
+        InputRequired(message="You can't leave this empty")
+    ])
+
+class Deti_Form(Form):
+    jmeno = TextField("Jmeno",validators=[
+        Predicate(safe_characters,message="Pouzijte pouze znaky bez ceske diakritiky!"),
+        Length(min=3,max=50,message="Pouzijte 3 - 50 znaku."),
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
+    prijmeni = TextField("Prijmeni", validators=[
+        Predicate(safe_characters, message="Pouzijte pouze znaky bez ceske diakritiky!"),
+        Length(min=3, max=50, message="Pouzijte 3 - 50 znaku."),
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
+    datum_nar = DateField(validators=[
+        InputRequired(message="Toto pole nesmi byt prazdne!")
+    ])
